@@ -1,69 +1,105 @@
 # San Andreas Save Workshop
 
-**Edit a classic PC GTA San Andreas save in your browser.** Change CJ’s stats, equipment, clothes, mission counters, and more. Review what changed, then download a checksum-verified copy. Your original save stays untouched.
+**A browser-based save editor for the classic PC release of GTA San Andreas.**
 
-> Unofficial fan project by [Alex Saifo](https://alex.saifo.se). For the original PC release.
+Open a save, change CJ's stats, gear, clothes, mission counters and more, check what changed, then download a copy with a valid checksum. Your original file is never modified. Nothing is uploaded: every save is read and written in your browser.
 
-## What you can do
+> Unofficial fan project by [Alex Saifo](https://alex.saifo.se). Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.
 
-| Feature | What it covers |
+## Features
+
+| Area | What you can edit |
 | --- | --- |
-| Player and stats | Health, armor, cash, skills, body stats, and 305 statistics |
-| Missions | Supported mission counters and flags, plus school results |
-| World and vehicles | Garages, weapons, tags, collectibles, gang territories, and more |
-| Dressing room | CJ’s clothes, accessories, hair, and tattoos with a live 3D preview |
-| Save tools | Original backup, undo/redo, byte comparison, slot selection, and checksum verification |
-| 100% sample | Open or download Alex’s “End Of The Line” save as Slot 1 |
+| **Player & stats** | Health, armor, cash, skills, body stats, and all 305 statistics |
+| **Missions** | Supported mission counters and flags, plus school results |
+| **World & vehicles** | Garages, weapons, tags, collectibles, gang territories, and more |
+| **Dressing room** | Clothes, accessories, hair, and tattoos with a live 3D preview |
+| **Save tools** | Original backup, undo/redo, byte-level diff, slot selection, checksum verification |
+| **100% sample** | Open or download a completed "End Of The Line" save as Slot 1 |
 
-The editor reads saves locally using the browser’s file APIs. It does not need an account, database, or upload server. It supports the recognized **202,752-byte classic PC save format**. Mobile, console, and Definitive Edition saves are unsupported. Named mission controls require a standard PC v1 or v2 script.
+The site also includes character portraits, loading-screen postcards, a memories card, and an in-browser radio covering 11 stations.
 
-Editing a counter changes stored mission state; it does not replay a mission or run its rewards. Back up first, keep the game closed while replacing a file, and test the edited save in an unused slot.
+## Compatibility
 
-## Run locally
+- **Supported:** classic PC saves in the standard **202,752-byte** format (`GTASAsf*.b`).
+- **Named mission controls** require a standard PC v1 or v2 script.
+- **Not supported:** mobile, console, and Definitive Edition saves.
 
-You only need a recent browser and a static file server. With Python 3, run from the repository root:
+Changing a mission counter only changes the stored state. It does not replay the mission or give its rewards.
+
+> [!TIP]
+> Back up your saves first, keep the game closed while replacing a file, and test edited saves in an unused slot.
+
+## Getting started
+
+There is nothing to install. You need a recent browser and any static file server. With Python 3, run this from the repository root:
 
 ```sh
 python -m http.server 8765 --bind 127.0.0.1 --directory public
 ```
 
-Open [http://127.0.0.1:8765/](http://127.0.0.1:8765/). Choose **Open save editor** to load your own `.b`, or **Open this save in editor** to try the bundled 100% sample. For an export, select the target slot in **Overview** and click **Download edited save**.
+Then open <http://127.0.0.1:8765/>:
 
-## Local edition and public source
+1. Choose **Open save editor** and load your own `.b` file, or **Open this save in editor** to try the 100% sample.
+2. Make your changes.
+3. In **Overview**, pick the target slot and click **Download edited save**.
 
-This local checkout contains the complete fan-site experience: CJ’s bundled 3D assets, classic loading-screen postcards, character portraits, a memories card, and a radio with 186 original music and talk clips across 11 stations. The radio starts at 10% when autoplay is allowed; the site offers a manual start otherwise.
+See the in-site **save file guide** (`public/save-file-guide.html`) for where PC saves are stored and how to install one.
 
-**Do not push this checkout, its deployment ZIP, or its Git history to a public repository.** Git history already contains game models, textures, artwork, and the soundtrack. A new commit deleting those files does not remove them from older commits.
+## Project structure
 
-Use the separate **public-source starter** ZIP. It starts from the editor before the bundled game assets were added. It includes the editor, the 100% sample, the save guide, and the Vercel and SEO setup. Its dressing room reads visitors’ own `player.img` locally. The bundled soundtrack, portraits, and loading-screen art are omitted. Start a new repository from the extracted files; do not copy the old `.git` directory.
-
-## Checks and contributions
-
-From the repository root, run:
-
-```sh
-node tests/check.cjs
-node tests/radio.cjs
-node build.cjs
+```text
+public/            Website source (HTML, CSS, JS, and static assets)
+  assets/          Editor engine, UI modules, wardrobe pack, radio data
+  downloads/       The bundled 100% sample save
+tests/             Verification scripts
+tools/             Helper scripts (e.g. importing radio clips from a local install)
+build.cjs          Copies public/ to dist/ and injects SEO metadata
+vercel.json        Vercel build settings and security headers
 ```
 
-The package check validates the 100% sample, checksum, static paths, and wardrobe assets. The radio check verifies bundled track paths and station art. Pass the path to a local classic PC installation to additionally compare the radio clips to the installed originals.
+## Tests
 
-`public/` is the website source, `tests/` holds verification scripts, and `build.cjs` generates deployment metadata into `dist/`. Report issues with the game edition, browser, and steps to reproduce. Share a minimal test case with pull requests; leave private saves and game files out of issues and PRs.
+Requires [Node.js](https://nodejs.org/). No dependencies to install.
 
-## Deploy the public-source edition
+```sh
+node tests/check.cjs   # 100% sample, checksum, static paths, wardrobe assets
+node tests/radio.cjs   # radio track paths and station art
+node build.cjs         # build the site into dist/
+```
 
-1. Import the new GitHub repository into [Vercel](https://vercel.com/docs/git/vercel-for-github). Leave the root directory at the repository root.
-2. The included `vercel.json` runs `node build.cjs` without installing dependencies and serves `dist/`. Keep [Vercel system environment variables enabled](https://vercel.com/docs/environment-variables/system-environment-variables#enable-system-environment-variables), or set `SEO_SITE_URL` to your production HTTPS origin.
-3. [Verify ownership](https://support.google.com/webmasters/answer/9008080) in Google Search Console and submit `/sitemap.xml`. For HTML-tag verification, set `GOOGLE_SITE_VERIFICATION` to the token value and redeploy.
+To also compare the bundled radio clips with your own installed game files, pass the path to a classic PC installation:
 
-The complete local edition exceeds Vercel Hobby’s [100 MB CLI source-upload limit](https://vercel.com/docs/limits#static-file-uploads). The public-source starter omits those large assets.
+```sh
+node tests/radio.cjs "C:/Path/To/GTA San Andreas"
+```
 
-## Credits and licensing
+## Deploying
 
-- [libsavegame](https://github.com/gtasa-savegame-editor/libsavegame) and [GTA:SA Savegame Editor](https://github.com/gtasa-savegame-editor/gtasa-savegame-editor) for save format research and wardrobe metadata.
-- [Sanny Builder data](https://github.com/sannybuilder/data), [Plugin-SDK](https://github.com/DK22Pac/plugin-sdk), and [gta-reversed](https://github.com/gta-reversed/gta-reversed) for game data references.
-- [Three.js](https://threejs.org/) for 3D rendering. The applicable upstream notices are in `public/editor.html`.
-- [SA Radio Generator](https://github.com/TheLuciano354/gta-sa-radio-generator) for reference on the original PC radio lookup format.
+The site is fully static and deploys to [Vercel](https://vercel.com/docs/git/vercel-for-github) without extra configuration:
 
-A project-wide source license has not been selected. Add a license for the code you own before calling the project open source; MIT is one option. Keep upstream notices intact. Rockstar’s game assets and third-party music are not included in any project source-code license.
+1. Import the repository into Vercel and keep the root directory at the repository root.
+2. `vercel.json` runs `node build.cjs` (no install step) and serves `dist/`.
+3. Keep [system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables#enable-system-environment-variables) enabled, or set `SEO_SITE_URL` to your production HTTPS origin.
+4. Optional: set `GOOGLE_SITE_VERIFICATION` to your Search Console HTML-tag token, redeploy, and submit `/sitemap.xml`.
+
+## Contributing
+
+Issues and pull requests are welcome.
+
+- **Bug reports:** include your game edition, browser, and steps to reproduce.
+- **Pull requests:** keep changes focused, run the checks above, and include a minimal test case where possible.
+- **Privacy:** don't attach personal saves or game files to issues or PRs.
+
+## Credits
+
+- [libsavegame](https://github.com/gtasa-savegame-editor/libsavegame) and [GTA:SA Savegame Editor](https://github.com/gtasa-savegame-editor/gtasa-savegame-editor): save format research and wardrobe metadata.
+- [Sanny Builder data](https://github.com/sannybuilder/data), [Plugin-SDK](https://github.com/DK22Pac/plugin-sdk), and [gta-reversed](https://github.com/gta-reversed/gta-reversed): game data references.
+- [Three.js](https://threejs.org/): 3D rendering. Upstream notices are kept in `public/editor.html`.
+- [SA Radio Generator](https://github.com/TheLuciano354/gta-sa-radio-generator): reference for the PC radio lookup format.
+
+## License
+
+The license for this project's original source code has not been chosen yet.
+
+*Grand Theft Auto* and *San Andreas* are trademarks of Take-Two Interactive Software. All game assets, artwork, and music belong to their respective owners and are not covered by any license for this project's code.
