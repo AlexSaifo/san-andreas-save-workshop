@@ -43,7 +43,8 @@ for (const [file, route] of Object.entries(pages)) {
 const sitemap = path.join(dist, 'sitemap.xml');
 const robots = path.join(dist, 'robots.txt');
 if (origin) {
-  const entries = Object.values(pages).map(route => '  <url><loc>' + escape(origin + route) + '</loc></url>').join('\n');
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const entries = Object.values(pages).map(route => '  <url><loc>' + escape(origin + route) + '</loc><lastmod>' + lastmod + '</lastmod></url>').join('\n');
   fs.writeFileSync(sitemap, '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + entries + '\n</urlset>\n');
 } else if (fs.existsSync(sitemap)) fs.unlinkSync(sitemap);
 fs.writeFileSync(robots, 'User-agent: *\nAllow: /\n' + (origin ? 'Sitemap: ' + origin + '/sitemap.xml\n' : ''));
