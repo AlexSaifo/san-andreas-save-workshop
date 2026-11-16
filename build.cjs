@@ -2,17 +2,14 @@ const fs = require('node:fs');
 const path = require('node:path');
 const publicDir = path.join(__dirname, 'public');
 const dist = path.join(__dirname, 'dist');
-const raw = process.env.SEO_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL && 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL);
-let origin;
-if (raw) {
-  const url = new URL(raw);
-  if (url.protocol !== 'https:' || url.pathname !== '/' || url.search || url.hash || url.username || url.password) {
-    throw Error('SEO_SITE_URL must be an HTTPS origin without a path, query or fragment.');
-  }
-  origin = url.origin;
-} else if (process.env.VERCEL_ENV === 'production') {
-  throw Error('Enable Vercel system environment variables or set SEO_SITE_URL to the production HTTPS origin.');
+// Production site. Set SEO_SITE_URL to override it (for example, a custom domain).
+const SITE_URL = 'https://san-andreas-save-workshop.saifoa808.workers.dev';
+const raw = process.env.SEO_SITE_URL || SITE_URL;
+const url = new URL(raw);
+if (url.protocol !== 'https:' || url.pathname !== '/' || url.search || url.hash || url.username || url.password) {
+  throw Error('SEO_SITE_URL must be an HTTPS origin without a path, query or fragment.');
 }
+const origin = url.origin;
 const verification = process.env.GOOGLE_SITE_VERIFICATION;
 if (verification && !/^[A-Za-z0-9_-]+$/.test(verification)) throw Error('Use the Search Console verification token only.');
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');

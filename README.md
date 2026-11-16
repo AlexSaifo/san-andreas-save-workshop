@@ -2,6 +2,8 @@
 
 **A browser-based save editor for the classic PC release of GTA San Andreas.**
 
+**[Open the live site →](https://san-andreas-save-workshop.saifoa808.workers.dev/)**
+
 Open a save, change CJ's stats, gear, clothes, mission counters and more, check what changed, then download a copy with a valid checksum. Your original file is never modified. Nothing is uploaded: every save is read and written in your browser.
 
 > Unofficial fan project by [Alex Saifo](https://alex.saifo.se). Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.
@@ -32,7 +34,7 @@ Changing a mission counter only changes the stored state. It does not replay the
 
 ## Getting started
 
-There is nothing to install. You need a recent browser and any static file server. With Python 3, run this from the repository root:
+The quickest way is the [live site](https://san-andreas-save-workshop.saifoa808.workers.dev/). To run it locally, there is nothing to install: you need a recent browser and any static file server. With Python 3, run this from the repository root:
 
 ```sh
 python -m http.server 8765 --bind 127.0.0.1 --directory public
@@ -54,7 +56,7 @@ public/            Website source (HTML, CSS, JS, and static assets)
   downloads/       The bundled 100% sample save
 tests/             Verification scripts
 tools/             Helper scripts (e.g. importing radio clips from a local install)
-build.cjs          Copies public/ to dist/ and injects SEO metadata
+build.cjs          Copies public/ to dist/ and adds SEO tags, sitemap.xml and robots.txt
 vercel.json        Vercel build settings and security headers
 ```
 
@@ -76,12 +78,18 @@ node tests/radio.cjs "C:/Path/To/GTA San Andreas"
 
 ## Deploying
 
-The site is fully static and deploys to [Vercel](https://vercel.com/docs/git/vercel-for-github) without extra configuration:
+The site is fully static and is live at <https://san-andreas-save-workshop.saifoa808.workers.dev/>, hosted on [Cloudflare Workers](https://developers.cloudflare.com/workers/static-assets/). Every push to `main` deploys automatically.
 
-1. Import the repository into Vercel and keep the root directory at the repository root.
-2. `vercel.json` runs `node build.cjs` (no install step) and serves `dist/`.
-3. Keep [system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables#enable-system-environment-variables) enabled, or set `SEO_SITE_URL` to your production HTTPS origin.
-4. Optional: set `GOOGLE_SITE_VERIFICATION` to your Search Console HTML-tag token, redeploy, and submit `/sitemap.xml`.
+| Setting | Value |
+| --- | --- |
+| Build command | `node build.cjs` |
+| Deploy command | `npx wrangler deploy --name san-andreas-save-workshop --assets ./dist --compatibility-date 2026-11-01` |
+
+`build.cjs` uses the live URL above for canonical links, Open Graph and Twitter cards, structured data, `sitemap.xml` and `robots.txt`. To use a custom domain, set `SEO_SITE_URL` to its HTTPS origin.
+
+**Search Console (optional):** set `GOOGLE_SITE_VERIFICATION` to your HTML-tag token, redeploy, and submit `/sitemap.xml`.
+
+`vercel.json` is also included if you prefer to deploy on Vercel.
 
 ## Contributing
 
