@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Edit GTA San Andreas classic PC saves in your browser. Change missions, stats and CJ’s outfit, or download the verified 100% GTASAsf1.b save.">
+  <meta name="theme-color" content="#141a14">
+  <title>GTA San Andreas Save Editor &amp; 100% PC Save Download</title>
+  <!-- site-seo -->
+  <link rel="icon" href="assets/san-andreas-reference.webp" type="image/webp">
+  <link rel="stylesheet" href="assets/welcome.css">
+  <link rel="stylesheet" href="assets/radio.css">
+  <link rel="stylesheet" href="assets/postcards.css">
+  <link rel="stylesheet" href="assets/memories.css">
+  <link rel="stylesheet" href="assets/character-tree.css">
+  <script defer src="assets/radio-data.js"></script>
+  <script defer src="assets/radio.js"></script>
+  <script defer src="assets/postcards.js"></script>
+  <script defer src="assets/memories.js"></script>
+</head>
+<body>
+  <header class="top wrap">
+    <a class="brand" id="home-logo" href="./" aria-label="Save Workshop home"><img class="official-logo" src="assets/san-andreas-reference.webp" alt="" width="62" height="62"><span>SAVE WORKSHOP<small>SAN ANDREAS / PC CLASSIC</small></span></a>
+    <nav aria-label="Main navigation"><a href="#radio" id="radio-nav">Radio</a><a href="#postcards">Postcards</a><a href="#memories">Memories</a><a href="#family-tree">CJ’s circle</a><a href="#download">100% save</a><a href="editor.html">Editor ↗</a></nav>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="welcome-title">
+      <div class="hero-copy">
+        <p class="kicker"><span></span> BACK TO GROVE STREET / CLASSIC PC</p>
+        <h1 id="welcome-title">GTA San Andreas<br><em>Save Editor</em></h1>
+        <p class="intro">Edit missions, stats, vehicles, and CJ’s outfit in your classic PC save. Your save stays in your browser.</p>
+        <div class="actions"><a class="cta primary" href="editor.html">Open save editor <span aria-hidden="true">↗</span></a><a class="cta secondary" href="#download">Get the 100% save <span aria-hidden="true">↓</span></a></div>
+        <button class="cta secondary hero-radio" id="hero-radio" type="button" hidden>♪ Turn on radio</button>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <img src="assets/los-santos.svg" alt="" width="720" height="660">
+        <div class="scene-marker"><b>GROVE STREET</b><span>GANTON · LOS SANTOS</span></div>
+        <div class="scene-hud"><b>07:03</b><i></i><span>LOS SANTOS · 1992</span></div>
+        <div class="mission-stamp"><b>mission passed!</b><span>RESPECT +</span></div>
+        <div class="plate"><span>LOS SANTOS</span><span>01 / SA</span></div>
+      </div>
+    </section>
+    <section class="radio-console" id="radio" aria-labelledby="radio-heading">
+      <header class="radio-top"><div><p class="kicker">AUDIO / IN-DASH RECEIVER</p><h2 id="radio-heading">San Andreas Radio</h2></div><a class="inline" href="#download">Skip to 100% save ↓</a></header>
+      <div class="receiver">
+        <div class="radio-screen">
+          <div class="radio-dial-label"><span class="signal"><i></i><i></i><i></i><i></i></span><span id="radio-index">06 / 11</span></div>
+          <div class="radio-tuned"><img id="radio-logo" src="assets/radio/rls.png" alt="" width="96" height="96"><span id="radio-silence" hidden aria-hidden="true">⏻</span><div><p class="kicker">TUNED TO</p><h3 id="radio-name">Radio Los Santos</h3><p id="radio-genre">West Coast hip-hop</p></div></div>
+          <div class="station-step"><button type="button" id="radio-prev" aria-label="Previous station">← Station</button><button type="button" id="radio-next" aria-label="Next station">Station →</button></div>
+        </div>
+        <div class="radio-controls">
+          <div class="radio-picker"><label for="radio-tracks">Track</label><select id="radio-tracks" disabled><option>Loading tracks…</option></select></div>
+          <div class="radio-transport"><button type="button" id="radio-prev-track" aria-label="Previous track" disabled>⏮</button><button type="button" id="radio-play" disabled>▶ Play</button><button type="button" id="radio-next-track" aria-label="Next track" disabled>⏭</button></div>
+          <div class="radio-slider"><label for="radio-seek">Seek</label><input type="range" id="radio-seek" min="0" max="1000" value="0" disabled><span id="radio-clock">0:00 / 0:00</span></div>
+          <div class="radio-slider"><label for="radio-volume">Volume</label><input type="range" id="radio-volume" min="0" max="100" value="10"></div>
+          <p id="radio-status" role="status" aria-live="polite">Ready to tune in.</p>
+        </div>
+      </div>
+      <div id="station-list" class="station-list" aria-label="Radio stations"></div>
+      <p class="radio-caption">A random station and track each time you open the page. Starts quietly where autoplay is allowed. <a href="save-file-guide.html#radio-help">Radio help</a></p>
+      <audio preload="none" aria-hidden="true"></audio>
+      <noscript><p>Enable JavaScript to use the radio.</p></noscript>
+    </section>
+    <section class="postcard-collection" id="postcards" aria-labelledby="postcards-title">
+      <header class="postcard-header">
+        <div><p class="kicker">STATE OF SAN ANDREAS / 1992</p><h2 id="postcards-title">Postcards from San Andreas</h2></div>
+        <span class="postmark" aria-hidden="true">AIR MAIL<br>SA · 92</span>
+      </header>
+      <div class="postcard-choices" aria-label="Choose a city">
+        <a href="#card-los-santos" data-postcard="card-los-santos"><small>01 / LS</small>Los Santos</a>
+        <a href="#card-san-fierro" data-postcard="card-san-fierro"><small>02 / SF</small>San Fierro</a>
+        <a href="#card-las-venturas" data-postcard="card-las-venturas"><small>03 / LV</small>Las Venturas</a>
+      </div>
+      <div class="postcard-deck">
+        <article class="postcard" id="card-los-santos" aria-labelledby="card-ls-title">
+          <div class="postcard-picture"><img src="assets/postcards/los-santos.webp" width="512" height="512" loading="lazy" decoding="async" alt="Original loading-screen art of CJ leaning against a red lowrider"><span>LOADING SCREEN / 01</span></div>
+          <div class="postcard-copy"><p class="kicker">GANTON · THE OLD NEIGHBORHOOD</p><h3 id="card-ls-title">Los Santos</h3><p>Take the BMX back to Grove Street and pull up at the Johnson house. This is where CJ’s trip home turns into a trip across the state.</p><dl><div><dt>LANDMARK</dt><dd>Grove Street</dd></div><div><dt>ON THE DIAL</dt><dd>Radio Los Santos</dd></div></dl></div>
+        </article>
+        <article class="postcard" id="card-san-fierro" aria-labelledby="card-sf-title">
+          <div class="postcard-picture"><img src="assets/postcards/san-fierro.webp" width="512" height="512" loading="lazy" decoding="async" alt="Original San Andreas loading-screen illustration of Cesar"><span>LOADING SCREEN / 02</span></div>
+          <div class="postcard-copy"><p class="kicker">DOHERTY · THE GARAGE</p><h3 id="card-sf-title">San Fierro</h3><p>Think steep streets, the bay, and a garage in Doherty. If you’re taking the scenic route, drive up to the Gant Bridge.</p><dl><div><dt>LANDMARK</dt><dd>Gant Bridge</dd></div><div><dt>ON THE DIAL</dt><dd>SF-UR</dd></div></dl></div>
+        </article>
+        <article class="postcard" id="card-las-venturas" aria-labelledby="card-lv-title">
+          <div class="postcard-picture"><img src="assets/postcards/las-venturas.webp" width="512" height="512" loading="lazy" decoding="async" alt="Original loading-screen art of two men in black suits in a casino corridor"><span>LOADING SCREEN / 03</span></div>
+          <div class="postcard-copy"><p class="kicker">THE STRIP · AFTER DARK</p><h3 id="card-lv-title">Las Venturas</h3><p>Leave the desert highway behind and roll onto the Strip after dark. The casino marquees are a good excuse to take the long way to your next save.</p><dl><div><dt>LANDMARK</dt><dd>The Strip</dd></div><div><dt>ON THE DIAL</dt><dd>Master Sounds 98.3</dd></div></dl></div>
+        </article>
+      </div>
+      <p class="postcard-credit">Original classic PC loading screens · <a href="https://media.rockstargames.com/rockstargames-newsite/img/manuals/en_us/GTA_SA_PS3_MANUAL_ENG.pdf">Rockstar’s San Andreas guide</a></p>
+    </section>
+    <section class="memories" id="memories" aria-labelledby="memories-title">
+      <div class="memory-intro">
+        <p class="kicker">MEMORY CARD / SLOT 01</p>
+        <h2 id="memories-title">San Andreas memories</h2>
+        <p>The things you did when you were supposed to be on your way to the next mission. Mark the ones you remember.</p>
+        <div class="memory-slot">
+          <svg width="47" height="50" viewBox="0 0 48 50" aria-hidden="true" fill="none"><rect x="4" y="3" width="40" height="44" rx="5" stroke="currentColor" stroke-width="2"/><path d="M12 4v12h24V4M12 34h24v12M17 8v5m7-5v5m7-5v5M15 26h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <div><output id="memory-count" aria-live="polite">0 / 6 remembered</output><progress id="memory-progress" max="6" value="0" aria-label="Memories remembered"></progress></div>
+        </div>
+        <p class="memory-local" id="memory-local">Saved on this device.</p>
+      </div>
+      <fieldset class="memory-grid" id="memory-checklist" disabled>
+        <legend class="memory-sr">Mark the San Andreas moments you remember</legend>
+        <label><input type="checkbox" value="bmx"><span class="memory-id">01 / GANTON</span><strong>The first BMX ride</strong><span class="memory-detail">Ignoring the route home to see what you could bunny hop over.</span></label>
+        <label><input type="checkbox" value="lowrider"><span class="memory-id">02 / UNITY STATION</span><strong>The lowrider dance</strong><span class="memory-detail">Watching the arrows and trying to hit every bounce on the beat.</span></label>
+        <label><input type="checkbox" value="burger"><span class="memory-id">03 / LUNCH BREAK</span><strong>Cluckin’ Bell</strong><span class="memory-detail">Stopping for food because, for once, a GTA protagonist actually had to eat.</span></label>
+        <label><input type="checkbox" value="gym"><span class="memory-id">04 / LOS SANTOS</span><strong>Another set at the gym</strong><span class="memory-detail">Going back for one more workout just to see how different CJ could look.</span></label>
+        <label><input type="checkbox" value="chiliad"><span class="memory-id">05 / COUNTRYSIDE</span><strong>Down Mount Chiliad</strong><span class="memory-detail">Getting a bike all the way to the top, then forgetting to use the brakes.</span></label>
+        <label><input type="checkbox" value="jetpack"><span class="memory-id">06 / THE DESERT</span><strong>That first jetpack flight</strong><span class="memory-detail">Taking off and realizing the roads were suddenly optional.</span></label>
+      </fieldset>
+      <noscript><p>Enable JavaScript to keep track of your memories.</p></noscript>
+    </section>
+    <section class="character-tree" id="family-tree" aria-labelledby="tree-title">
+      <header class="tree-heading">
+        <p class="kicker">GROVE STREET / THE PEOPLE</p>
+        <h2 id="tree-title">CJ’s family &amp; friends</h2>
+        <p>From the Johnson house to friends across the state. This tree shows how each character knows CJ without giving away what happens later.</p>
+      </header>
+      <figure class="tree-root">
+        <img src="assets/characters/cj.gif" width="100" height="100" loading="lazy" decoding="async" alt="Carl Johnson in Grand Theft Auto: San Andreas">
+        <figcaption><span class="tree-label">THE JOHNSON FAMILY</span><strong>Carl “CJ” Johnson</strong><span>Back home in Los Santos</span></figcaption>
+      </figure>
+      <div class="tree-branches">
+        <section class="tree-branch tree-family" aria-labelledby="tree-family-heading">
+          <h3 id="tree-family-heading">Johnson family</h3>
+          <ul>
+            <li><span class="tree-memorial" aria-hidden="true">BJ</span><div><span class="tree-label">MOTHER · IN MEMORY</span><h4>Beverly Johnson</h4><p>Mother of Sweet, CJ, Kendl, and Brian. Her death brings CJ back to Los Santos.</p></div></li>
+            <li><img src="assets/characters/sweet.gif" width="100" height="100" loading="lazy" decoding="async" alt="Sweet Johnson"><div><span class="tree-label">OLDER BROTHER</span><h4>Sean “Sweet” Johnson</h4><p>Leads the Grove Street Families and wants CJ back in the neighborhood.</p></div></li>
+            <li><img src="assets/characters/kendl.gif" width="100" height="100" loading="lazy" decoding="async" alt="Kendl Johnson"><div><span class="tree-label">YOUNGER SISTER</span><h4>Kendl Johnson</h4><p>CJ and Sweet’s sister and Cesar’s partner. She has plans of her own.</p></div></li>
+            <li><span class="tree-memorial" aria-hidden="true">BJ</span><div><span class="tree-label">YOUNGER BROTHER · IN MEMORY</span><h4>Brian Johnson</h4><p>The youngest Johnson sibling. He died before the events of the game and is remembered in dialogue.</p></div></li>
+          </ul>
+        </section>
+        <section class="tree-branch tree-grove" aria-labelledby="tree-grove-heading">
+          <h3 id="tree-grove-heading">Grove Street crew</h3>
+          <ul>
+            <li><img src="assets/characters/bigsmoke.gif" width="100" height="100" loading="lazy" decoding="async" alt="Big Smoke"><div><span class="tree-label">OLD FAMILY FRIEND</span><h4>Melvin “Big Smoke” Harris</h4><p>A familiar face from the old neighborhood, usually with a lot to say.</p></div></li>
+            <li><img src="assets/characters/ryder.gif" width="100" height="100" loading="lazy" decoding="async" alt="Ryder"><div><span class="tree-label">OLD GROVE STREET FRIEND</span><h4>Lance “Ryder” Wilson</h4><p>CJ’s neighbor and one of the first Grove Street faces he sees again.</p></div></li>
+          </ul>
+        </section>
+        <section class="tree-branch tree-allies" aria-labelledby="tree-allies-heading">
+          <h3 id="tree-allies-heading">Friends around the state</h3>
+          <ul>
+            <li><img src="assets/characters/cesar.gif" width="100" height="100" loading="lazy" decoding="async" alt="Cesar Vialpando"><div><span class="tree-label">KENDL’S PARTNER · CJ’S ALLY</span><h4>Cesar Vialpando</h4><p>A lowrider enthusiast who becomes a trusted friend.</p></div></li>
+            <li><img class="woozie-art" src="assets/postcards/las-venturas.webp" width="100" height="100" loading="lazy" decoding="async" alt="Woozie in the original San Andreas loading-screen artwork"><div><span class="tree-label">RACING FRIEND · BUSINESS ALLY</span><h4>Wu Zi Mu “Woozie”</h4><p>A San Fierro street racer with ties to Las Venturas.</p></div></li>
+            <li><img src="assets/characters/thetruth.gif" width="100" height="100" loading="lazy" decoding="async" alt="The Truth"><div><span class="tree-label">COUNTRYSIDE ALLY</span><h4>The Truth</h4><p>An unconventional friend with a conspiracy theory for every occasion.</p></div></li>
+          </ul>
+        </section>
+      </div>
+      <p class="tree-credit">Character screenshots via <a href="https://www.gta-sanandreas.com/characters/">GTA-SanAndreas.com</a> · names checked against the <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12120/manuals/GTASA_PC_MANUAL_FINAL.pdf?t=1634144450">classic PC manual</a>.</p>
+    </section>
+    <section class="features" aria-label="Editor features">
+      <div><span class="kicker">01 / PROGRESS</span><h2>Missions &amp; stats</h2><p>Edit saved mission counters, school scores, and 305 statistics.</p></div>
+      <div><span class="kicker">02 / STYLE</span><h2>CJ’s dressing room</h2><p>Open your save to dress CJ in 3D. Pick clothes, hair and accessories, and see changes instantly.</p></div>
+      <div><span class="kicker">03 / STORAGE</span><h2>Your files stay local</h2><p>Back up, undo, and export with a verified checksum. No account needed.</p></div>
+    </section>
+    <section class="save-card" id="download" aria-labelledby="download-title">
+      <div class="save-graphic" aria-hidden="true"><span class="archive">SAVE ARCHIVE <span>◉</span></span><strong>100<span>%</span></strong><span class="archive">SAN ANDREAS <span>01</span></span></div>
+      <div class="save-copy">
+        <p class="kicker">SAFEHOUSE / SAVE SLOT 01</p>
+        <h2 id="download-title">100% complete PC save</h2>
+        <p>Alex Saifo’s “End Of The Line” save, packaged for Slot 1. Use it in the original PC game or open it in the editor.</p>
+        <dl class="save-meta"><div><dt>GAME PROGRESS</dt><dd>100%</dd></div><div><dt>SAVE FILE</dt><dd>GTASAsf1.b</dd></div><div><dt>CHECKSUM</dt><dd>Verified</dd></div></dl>
+        <div class="actions"><a class="cta primary" href="downloads/GTASAsf1.b" download="GTASAsf1.b">Download Slot 1 <span aria-hidden="true">↓</span></a><a class="inline" href="editor.html?sample=slot1">Open this save in editor ↗</a></div>
+        <p class="install">Close GTA first. Back up your existing Slot 1, then place the downloaded file in <strong>Documents → GTA San Andreas User Files</strong>.</p>
+        <p class="install"><a class="inline" href="save-file-guide.html">Read the full install and compatibility guide</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap site-footer"><span>San Andreas Save Workshop <span class="sep">/</span> Unofficial fan tool</span><span>Made by <a href="https://alex.saifo.se">Alex Saifo ↗</a></span></footer>
+</body>
+</html>

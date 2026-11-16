@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Open a classic PC GTASAsf .b save and edit missions, money, stats, cars and outfits. Undo changes and export a checksum-verified save from your browser."><title>Edit a GTA San Andreas PC Save Online | Save Workshop</title><!-- site-seo --><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/wardrobe.css"><link rel="stylesheet" href="assets/web-editor.css"><link rel="icon" href="assets/san-andreas-reference.webp" type="image/webp"></head>
+<body>
+<div class="shell"><aside>
+<a class="brand" href="./"><img class="editor-tattoo" src="assets/san-andreas-reference.webp" alt="" width="56" height="56"><span>SAVE WORKSHOP<small>SAN ANDREAS / PC CLASSIC</small></span></a>
+<div class="navcaption">YOUR SAVE, YOUR RULES</div><nav id="nav" aria-label="Editor sections"></nav>
+<div class="asidefoot"><span class="dot"></span> 100% local processing<br><small>No accounts. No uploads to a server.</small><button id="helpnav">How to use & sources ↗</button></div>
+</aside>
+<div class="workspace"><header><div><span class="eyebrow">GTA SAN ANDREAS</span><h1>GTA San Andreas Save Editor <span class="tag">LOCAL EDITING</span></h1></div><div class="headeractions"><button id="open">Open save</button><button id="open-wardrobe" type="button" hidden>Clothes &amp; 3D model</button><input id="file" type="file" accept=".b" hidden><button id="download" class="primary" disabled>↓ Download edited save</button></div></header>
+<div id="notice" role="status" aria-live="polite" hidden></div>
+<section id="welcome" class="welcome"><div class="welcomeart"><span class="eyebrow">LOS SANTOS • SAN FIERRO • LAS VENTURAS</span><h2>A new chapter.<br><em>Same save.</em></h2><p>Fine-tune CJ, your arsenal, mission state and the world.<br>Open a classic PC save to get started.</p><label class="dropzone" id="drop" for="file"><span class="fileicon">↑</span><strong>Drop your save here</strong><span>or click to browse · GTASAsf1.b – GTASAsf8.b</span></label><div class="landing-links"><button id="open-sample" type="button">Open the 100% save</button><a href="downloads/GTASAsf1.b" download="GTASAsf1.b">↓ Download Slot 1</a><a href="./">← Welcome page</a><a href="save-file-guide.html">Save file guide</a></div><div class="welcomechips"><span>CHECKSUM VERIFIED</span><span>UNDO BUILT IN</span><span>NO SERVER UPLOADS</span></div></div><div class="welcomeinfo"><div class="large-number">305<span>editable statistics</span></div><p>Health & money<br>Mission counters & flags<br>Weapons & ammunition<br>Stored cars & collectibles<br>Clothing, gangs & script globals</p><small>For the original PC release.<br>Mobile, console and Definitive Edition layouts are unsupported.</small></div></section>
+<section id="loaded" hidden><div class="filebar"><div><span class="dot"></span><strong id="filename"></strong><span id="integrity"></span></div><div class="toolbar"><button id="backup">↓ Original backup</button><button id="undo" disabled>↶ Undo</button><button id="redo" disabled>↷ Redo</button><button id="reset" disabled>Reset</button><span id="changeCount">0 bytes changed</span></div></div>
+<div class="pagehead"><div><span class="eyebrow" id="sectionkicker">THE BASICS</span><h2 id="sectionTitle">Overview</h2><p id="sectionDescription"></p></div><label class="searchwrap"><span>⌕</span><input id="search" type="search" placeholder="Find a field…" aria-label="Search fields in this section"></label></div>
+<div id="content"></div></section>
+<footer>Made for your next trip to Grove Street.<span>Made by <a href="https://alex.saifo.se">Alex Saifo ↗</a> · <a href="./">Home</a></span></footer>
+</div></div><script defer src="assets/data.js"></script><script defer src="assets/engine.js"></script><script defer src="assets/viewer.bundle.js"></script><script defer src="assets/wardrobe.js"></script><script defer src="assets/app.js"></script><script defer src="assets/web-editor.js"></script>
+<!-- Format references: https://github.com/gtasa-savegame-editor/libsavegame
+https://github.com/sannybuilder/data ; https://github.com/gta-reversed/gta-reversed
+Plugin-SDK field names: Authors GTA Community. https://github.com/DK22Pac/plugin-sdk
+Third-party notice for libsavegame/editor format logic:
+MIT License
+
+Copyright (c) 2017 Paul Breeuwsma, Lukas Fülling
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Three.js v0.180.0:
+The MIT License
+
+Copyright © 2010-2025 three.js authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+CJ preview models and textures are from GTA San Andreas. This is an unofficial fan tool.
+--></body></html>
