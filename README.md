@@ -4,7 +4,7 @@
 
 **[Open the live site →](https://san-andreas-save-workshop.saifoa808.workers.dev/)**
 
-Open a save, change CJ's stats, gear, clothes, mission counters and more, check what changed, then download a copy with a valid checksum. Your original file is never modified. Nothing is uploaded: every save is read and written in your browser.
+Open a save, change CJ's stats, gear, clothes, mission counters and more, check what changed, then download a copy with a valid checksum. Your original file is never modified. Nothing is uploaded: every save is read and written in your browser. The live site uses [GoatCounter](https://www.goatcounter.com/) for anonymous page-view statistics (no cookies, no personal data); save files are never part of it.
 
 > Unofficial fan project by [Alex Saifo](https://alex.saifo.se). Not affiliated with or endorsed by Rockstar Games or Take-Two Interactive.
 
