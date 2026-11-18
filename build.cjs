@@ -14,7 +14,8 @@ const verification = process.env.GOOGLE_SITE_VERIFICATION;
 if (verification && !/^[A-Za-z0-9_-]+$/.test(verification)) throw Error('Use the Search Console verification token only.');
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const meta = (type, name, value) => '<meta ' + type + '="' + name + '" content="' + escape(value) + '">';
-const pages = { 'index.html': '/', 'editor.html': '/editor.html', 'save-file-guide.html': '/save-file-guide.html' };
+// Cloudflare redirects /page.html to /page, so canonical and sitemap URLs use the extensionless form.
+const pages = { 'index.html': '/', 'editor.html': '/editor', 'save-file-guide.html': '/save-file-guide' };
 fs.cpSync(publicDir, dist, { recursive: true });
 for (const [file, route] of Object.entries(pages)) {
   const target = path.join(dist, file);
@@ -33,8 +34,8 @@ for (const [file, route] of Object.entries(pages)) {
     const author = { '@type':'Person', name:'Alex Saifo', url:'https://alex.saifo.se' };
     let schema;
     if (route === '/') schema = { '@type':'WebSite', name:'San Andreas Save Workshop', alternateName:'Save Workshop', url:canonical, inLanguage:'en' };
-    if (route === '/editor.html') schema = { '@type':'WebApplication', name:'GTA San Andreas Save Editor', url:canonical, description, applicationCategory:'GameApplication', operatingSystem:'Any', browserRequirements:'Requires JavaScript; optional 3D preview requires WebGL', isAccessibleForFree:true, author, offers:{ '@type':'Offer', price:0, priceCurrency:'USD' } };
-    if (route === '/save-file-guide.html') schema = { '@type':'Article', headline:'How to install a GTA San Andreas save on PC', url:canonical, mainEntityOfPage:canonical, description, inLanguage:'en', image, author };
+    if (route === '/editor') schema = { '@type':'WebApplication', name:'GTA San Andreas Save Editor', url:canonical, description, applicationCategory:'GameApplication', operatingSystem:'Any', browserRequirements:'Requires JavaScript; optional 3D preview requires WebGL', isAccessibleForFree:true, author, offers:{ '@type':'Offer', price:0, priceCurrency:'USD' } };
+    if (route === '/save-file-guide') schema = { '@type':'Article', headline:'How to install a GTA San Andreas save on PC', url:canonical, mainEntityOfPage:canonical, description, inLanguage:'en', image, author };
     tags.push('<script type="application/ld+json">' + JSON.stringify({ '@context':'https://schema.org', ...schema }).replaceAll('<','\\u003c') + '</script>');
     if (route === '/' && verification) tags.push(meta('name', 'google-site-verification', verification));
   }
